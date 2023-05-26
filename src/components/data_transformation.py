@@ -25,8 +25,10 @@ class DataTransformation:
 
     def get_data_transformer_object(self): 
         '''
-        This function si responsible for data trnasformation
-        
+        This function is responsible for data trnasformation
+        both categorical and numerical data
+        Creating numeric and categorical data pipelines
+        Transform both numerical and categorical pipelines 
         '''
         try:
             numerical_columns = ["writing_score", "reading_score"]
@@ -37,7 +39,9 @@ class DataTransformation:
                 "lunch",
                 "test_preparation_course",
             ]
-
+            '''
+            Handling missing values for numerical variables using median
+            '''
             num_pipeline= Pipeline(
                 steps=[
                 ("imputer",SimpleImputer(strategy="median")),
@@ -45,7 +49,10 @@ class DataTransformation:
 
                 ]
             )
-
+            '''
+            Handling categorical data missing values using mode (Most frequenct data)
+            and OneHot Encoder
+            '''
             cat_pipeline=Pipeline(
 
                 steps=[
